@@ -11,18 +11,12 @@ return new class extends Migration
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-<<<<<<< HEAD
-=======
             $table->string('origin');
->>>>>>> e1849ef838b9f6a8b161e51847a1655cf2d699b2
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->text('description')->nullable();
             $table->string('photo')->nullable()->default(null);
             $table->string('emoji')->default('🎭');
-<<<<<<< HEAD
-=======
             $table->string('bg_color')->default('#FEF3C7');
->>>>>>> e1849ef838b9f6a8b161e51847a1655cf2d699b2
             $table->unsignedBigInteger('votes')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();
