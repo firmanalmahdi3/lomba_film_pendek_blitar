@@ -128,7 +128,7 @@
                     <div class="flex justify-between text-xs text-gray-400 mb-1">
                         <span>{{ number_format($candidate->votes) }} suara</span>
                         <span>{{ $barPct }}%</span>
->>>>>>> e1849ef838b9f6a8b161e51847a1655cf2d699b2
+>>>>>>> 
                     </div>
                     <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                         <div class="h-full rounded-full"
