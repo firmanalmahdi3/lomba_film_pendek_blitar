@@ -109,11 +109,15 @@
             <div class="p-4">
                 <h3 class="font-bold text-gray-900 text-sm mb-2 leading-snug">{{ $candidate->name }}</h3>
 
-                {{-- Vote bar --}}
-                <div class="mb-3">
-                    <div class="flex justify-between text-xs text-gray-400 mb-1">
-                        <span>{{ number_format($candidate->votes) }} suara</span>
-                        <span>{{ $barPct }}%</span>
+                    {{-- Vote bar --}}
+                    <div class="mb-3">
+                        <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full rounded-full"
+                                style="width: {{ $barPct }}%;
+                                        background: linear-gradient(90deg, #F97316, #C2410C);
+                                        transition: width 0.6s ease">
+                            </div>
+                        </div>
                     </div>
                     <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                         <div class="h-full rounded-full"
