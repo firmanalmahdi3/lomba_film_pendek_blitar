@@ -54,7 +54,7 @@
             <p class="font-semibold text-lg">Belum ada peserta di kategori ini.</p>
         </div>
     @else
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
         @foreach($candidates as $i => $candidate)
         @php
             $hasVotedGlobally = count($votedIds) > 0;
@@ -74,6 +74,7 @@
             }
             $thumbUrl = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : null;
         @endphp
+    </div>
 
         <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
 
