@@ -123,7 +123,6 @@
                 {{-- Vote bar --}}
                 <div class="mb-3">
                     <div class="flex justify-between text-xs text-gray-400 mb-1">
-                        <span>{{ number_format($candidate->votes) }} suara</span>
                         <span>{{ $barPct }}%</span>
                     </div>
                     <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
