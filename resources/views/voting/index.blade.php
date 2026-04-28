@@ -54,7 +54,7 @@
             <p class="font-semibold text-lg">Belum ada peserta di kategori ini.</p>
         </div>
     @else
-    
+
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         @foreach($candidates as $i => $candidate)
         @php
@@ -243,10 +243,10 @@
 const modal = document.getElementById('vote-modal');
 const loginModal = document.getElementById('login-modal');
 
-function openVoteModal(id, name, origin) {
+function openVoteModal(id, name,) {
     document.getElementById('modal-candidate-name').textContent = 'Vote untuk ' + name;
     document.getElementById('modal-candidate-desc').textContent =
-        'Apakah kamu yakin ingin memberikan suaramu untuk ' + name + ' dari ' + origin + '?';
+        'Apakah kamu yakin ingin memberikan suaramu untuk ' + name + ' dari ' + '?';
     document.getElementById('vote-form').action = '/voting/' + id;
     modal.style.removeProperty('display');
     modal.style.display = 'flex';
