@@ -13,28 +13,34 @@
     {{-- Tailwind CSS via CDN --}}
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['"Playfair Display"', 'serif'],
-                        body:    ['"Plus Jakarta Sans"', 'sans-serif'],
+    tailwind.config = {
+        safelist: [
+            'grid-cols-1',
+            'sm:grid-cols-2', 
+            'lg:grid-cols-4',
+            'grid-cols-4',
+        ],
+        theme: {
+            extend: {
+                fontFamily: {
+                    display: ['"Playfair Display"', 'serif'],
+                    body:    ['"Plus Jakarta Sans"', 'sans-serif'],
+                },
+                colors: {
+                    orange: {
+                        50:  '#FFF7ED',
+                        100: '#FFEDD5',
+                        200: '#FED7AA',
+                        400: '#FB923C',
+                        500: '#F97316',
+                        600: '#EA580C',
+                        700: '#C2410C',
+                        800: '#9A3412',
                     },
-                    colors: {
-                        orange: {
-                            50:  '#FFF7ED',
-                            100: '#FFEDD5',
-                            200: '#FED7AA',
-                            400: '#FB923C',
-                            500: '#F97316',
-                            600: '#EA580C',
-                            700: '#C2410C',
-                            800: '#9A3412',
-                        },
-                        brand: {
-                            blue:       '#1D4ED8',
-                            'blue-dark':'#1E3A8A',
-                            'blue-light':'#BFDBFE',
+                    brand: {
+                        blue:        '#1D4ED8',
+                        'blue-dark': '#1E3A8A',
+                        'blue-light':'#BFDBFE',
                         }
                     }
                 }
