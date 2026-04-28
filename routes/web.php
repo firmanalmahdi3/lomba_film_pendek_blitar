@@ -4,20 +4,18 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\VotingController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
+
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CandidateController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\VoteController;
 use App\Http\Controllers\Admin\UserController;
-=======
 
 /*
 |----------------------------------------------------------------------
-| Festival Lampung — Web Routes
+| Festival — Web Routes
 |----------------------------------------------------------------------
 */
->>>>>>> e1849ef838b9f6a8b161e51847a1655cf2d699b2
 
 // Beranda
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -39,7 +37,6 @@ Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->mi
 Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegister'])->name('register')->middleware('guest');
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->middleware('guest');
 Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout')->middleware('auth');
-<<<<<<< HEAD
 
 // Admin
 
@@ -57,5 +54,3 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
 });
-=======
->>>>>>> e1849ef838b9f6a8b161e51847a1655cf2d699b2

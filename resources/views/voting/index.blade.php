@@ -115,12 +115,10 @@
             {{-- Body --}}
             <div class="p-4">
                 <h3 class="font-bold text-gray-900 text-sm mb-1 leading-snug">{{ $candidate->name }}</h3>
-<<<<<<< HEAD
 
                 {{-- Vote bar --}}
                 <div class="mb-3">
                     <div class="flex justify-between text-xs text-white mb-1">
-=======
                 <p class="text-xs text-gray-400 mb-3">📍 {{ $candidate->origin }}</p>
 
                 {{-- Vote bar --}}
@@ -128,7 +126,6 @@
                     <div class="flex justify-between text-xs text-gray-400 mb-1">
                         <span>{{ number_format($candidate->votes) }} suara</span>
                         <span>{{ $barPct }}%</span>
->>>>>>> 
                     </div>
                     <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
                         <div class="h-full rounded-full"
