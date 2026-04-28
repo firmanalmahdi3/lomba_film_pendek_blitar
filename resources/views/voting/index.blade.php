@@ -54,12 +54,11 @@
             <p class="font-semibold text-lg">Belum ada peserta di kategori ini.</p>
         </div>
     @else
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
+    <div class="kandidat-grid">
         @foreach($candidates as $candidate)
         @php
             $hasVotedGlobally = count($votedIds) > 0;
             $isVotedForThis   = in_array($candidate->id, $votedIds);
-            $barPct           = $maxVotes > 0 ? round(($candidate->votes / $maxVotes) * 100) : 0;
 
             $ytUrl    = $candidate->youtube_url ?? null;
             $ytId     = null;
@@ -107,13 +106,7 @@
 
             {{-- Body --}}
             <div class="p-4">
-                <h3 class="font-bold text-gray-900 text-sm mb-2 leading-snug">{{ $candidate->name }}</h3>
-
-                    {{-- Vote bar --}}
-                    <div class="mb-3">
-                        <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        </div>
-                    </div>
+                <h3 class="font-bold text-gray-900 text-sm mb-3 leading-snug">{{ $candidate->name }}</h3>
 
                 {{-- Tombol Vote --}}
                 @if($isVotedForThis)
@@ -207,6 +200,21 @@
 
 @push('styles')
 <style>
+.kandidat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+@media (max-width: 1024px) {
+    .kandidat-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+    .kandidat-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+@media (max-width: 480px) {
+    .kandidat-grid { grid-template-columns: repeat(1, 1fr); }
+}
 @keyframes popIn {
     from { transform: scale(0.85); opacity: 0; }
     to   { transform: scale(1);    opacity: 1; }
