@@ -119,14 +119,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div class="h-full rounded-full"
-                             style="width: {{ $barPct }}%;
-                                    background: linear-gradient(90deg, #F97316, #C2410C);
-                                    transition: width 0.6s ease">
-                        </div>
-                    </div>
-                </div>
 
                 {{-- Tombol Vote --}}
                 @if($isVotedForThis)
