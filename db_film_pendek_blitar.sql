@@ -70,7 +70,7 @@ CREATE TABLE `candidates` (
 -- Dumping data untuk tabel `candidates`
 --
 
-INSERT INTO `candidates` (`id`, `name`, `origin`, `category_id`, `description`, `youtube_url`, `emoji`, `bg_color`, `votes`, `is_active`, `created_at`, `updated_at`) VALUES
+INSERT INTO `candidates` (`id`, `name`, `category_id`, `description`, `youtube_url`, `emoji`, `bg_color`, `votes`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'Film Masyarakat 1', 'Blitar', 1, 'Kebangkitan di Kota Blitar: Semangat – Potensi – Perjuangan Menuju Kota Masa Depan', 'https://youtu.be/tSbTFH8gtXk?si=FvwTTNO6WdT7MhZw', '🎬', '#FEF3C7', 0, 1, '2026-04-23 07:39:13', '2026-04-23 07:39:13'),
 (2, 'Film Masyarakat 2', 'Blitar', 1, 'Kebangkitan di Kota Blitar: Semangat – Potensi – Perjuangan Menuju Kota Masa Depan', 'https://youtu.be/NyMIhwxnngA?si=Y0lVCIn-utY1WU6u', '🎬', '#DBEAFE', 0, 1, '2026-04-23 07:39:13', '2026-04-23 07:39:13'),
 (3, 'Film Masyarakat 3', 'Blitar', 1, 'Kebangkitan di Kota Blitar: Semangat – Potensi – Perjuangan Menuju Kota Masa Depan', 'https://youtu.be/ZnTDuHM-v_E?si=cDiY3IAugu9Gu_Tt', '🎬', '#D1FAE5', 0, 1, '2026-04-23 07:39:13', '2026-04-23 07:39:13'),

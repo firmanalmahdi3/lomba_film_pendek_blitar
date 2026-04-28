@@ -119,8 +119,7 @@
                 {{-- Vote bar --}}
                 <div class="mb-3">
                     <div class="flex justify-between text-xs text-white mb-1">
-                <p class="text-xs text-gray-400 mb-3">📍 {{ $candidate->origin }}</p>
-
+                    </div>
                 {{-- Vote bar --}}
                 <div class="mb-3">
                     <div class="flex justify-between text-xs text-gray-400 mb-1">
