@@ -54,122 +54,105 @@
             <p class="font-semibold text-lg">Belum ada peserta di kategori ini.</p>
         </div>
     @else
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
-        @foreach($candidates as $i => $candidate)
-        @php
-            $hasVotedGlobally = count($votedIds) > 0;
-            $isVotedForThis = in_array($candidate->id, $votedIds);
-            $barPct    = $maxVotes > 0 ? round(($candidate->votes / $maxVotes) * 100) : 0;
+    
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 3rem;">
+    @foreach($candidates as $candidate)
+    @php
+        $hasVotedGlobally = count($votedIds) > 0;
+        $isVotedForThis   = in_array($candidate->id, $votedIds);
+        $barPct           = $maxVotes > 0 ? round(($candidate->votes / $maxVotes) * 100) : 0;
 
-            // Ekstrak YouTube ID langsung di blade — tidak perlu accessor model
-            $ytUrl    = $candidate->youtube_url ?? null;
-            $ytId     = null;
-            if ($ytUrl) {
-                preg_match(
-                    '/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/',
-                    $ytUrl,
-                    $m
-                );
-                $ytId = $m[1] ?? null;
-            }
-            $thumbUrl = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : null;
-        @endphp
-    </div>
+        $ytUrl    = $candidate->youtube_url ?? null;
+        $ytId     = null;
+        if ($ytUrl) {
+            preg_match(
+                '/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/',
+                $ytUrl, $m
+            );
+            $ytId = $m[1] ?? null;
+        }
+        $thumbUrl = $ytId ? "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg" : null;
+    @endphp
 
-        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
+    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
 
-            {{-- Thumbnail YouTube --}}
-            <div class="relative">
-                @if($thumbUrl)
-                    <a href="{{ $ytUrl }}" target="_blank" class="group relative block">
-                        <img src="{{ $thumbUrl }}"
-                             alt="{{ $candidate->name }}"
-                             class="w-full h-44 object-cover">
-                        {{-- Overlay play --}}
-                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center
-                                    opacity-0 group-hover:opacity-100 transition duration-200">
-                            <span class="text-white font-semibold text-sm flex items-center gap-2">
-                                ▶ Tonton Video Ini
-                            </span>
-                        </div>
-                        {{-- Icon YouTube sudut kanan bawah --}}
-                        <span class="absolute bottom-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">
-                            ▶ YouTube
+        {{-- Thumbnail YouTube --}}
+        <div class="relative">
+            @if($thumbUrl)
+                <a href="{{ $ytUrl }}" target="_blank" class="group relative block">
+                    <img src="{{ $thumbUrl }}"
+                         alt="{{ $candidate->name }}"
+                         class="w-full h-44 object-cover">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
+                        <span class="text-white font-semibold text-sm flex items-center gap-2">
+                            ▶ Tonton Video Ini
                         </span>
-                    </a>
-                @else
-                    {{-- Fallback jika belum ada link YouTube --}}
-                    <div class="w-full h-44 flex items-center justify-center bg-gray-100 text-gray-400">
-                        <div class="text-center">
-                            <div class="text-4xl mb-1">🎬</div>
-                            <p class="text-xs">Video belum tersedia</p>
-                        </div>
                     </div>
-                @endif
-
-                {{-- Badge kategori --}}
-                <span class="absolute top-2 left-2 bg-white/90 text-orange-700 text-xs font-bold px-2 py-0.5 rounded-full shadow">
-                    {{ $candidate->category->icon }} {{ $candidate->category->name }}
-                </span>
-            </div>
-
-            {{-- Body --}}
-            <div class="p-4">
-                <h3 class="font-bold text-gray-900 text-sm mb-1 leading-snug">{{ $candidate->name }}</h3>
-
-                {{-- Vote bar --}}
-                <div class="mb-3">
-                    <div class="flex justify-between text-xs text-white mb-1">
-                    </div>
-                {{-- Vote bar --}}
-                <div class="mb-3">
-                    <div class="flex justify-between text-xs text-gray-400 mb-1">
-                    </div>
-                    <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                        <div class="h-full rounded-full"
-                             style="width: {{ $barPct }}%;
-                                    background: linear-gradient(90deg, #F97316, #C2410C);
-                                    transition: width 0.6s ease">
-                        </div>
+                    <span class="absolute bottom-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded">
+                        ▶ YouTube
+                    </span>
+                </a>
+            @else
+                <div class="w-full h-44 flex items-center justify-center bg-gray-100 text-gray-400">
+                    <div class="text-center">
+                        <div class="text-4xl mb-1">🎬</div>
+                        <p class="text-xs">Video belum tersedia</p>
                     </div>
                 </div>
+            @endif
 
-                {{-- Tombol Vote --}}
-                @if($isVotedForThis)
-                    <button disabled
-                            class="mt-1 w-full py-2 rounded-xl text-sm font-bold border-2 border-blue-600
-                                   bg-blue-600 text-white cursor-default">
-                        ✓ Pilihanmu
-                    </button>
-                @elseif($hasVotedGlobally)
-                    <button disabled
-                            class="mt-1 w-full py-2 rounded-xl text-sm font-bold border-2 border-gray-300
-                                   bg-gray-100 text-gray-400 cursor-not-allowed">
-                        Sudah Vote
+            <span class="absolute top-2 left-2 bg-white/90 text-orange-700 text-xs font-bold px-2 py-0.5 rounded-full shadow">
+                {{ $candidate->category->icon }} {{ $candidate->category->name }}
+            </span>
+        </div>
+
+        {{-- Body --}}
+        <div class="p-4">
+            <h3 class="font-bold text-gray-900 text-sm mb-2 leading-snug">{{ $candidate->name }}</h3>
+
+            {{-- Vote bar --}}
+            <div class="mb-3">
+                <div class="flex justify-between text-xs text-gray-400 mb-1">
+                    <span>{{ number_format($candidate->votes) }} suara</span>
+                    <span>{{ $barPct }}%</span>
+                </div>
+                <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                    <div class="h-full rounded-full"
+                         style="width: {{ $barPct }}%;
+                                background: linear-gradient(90deg, #F97316, #C2410C);
+                                transition: width 0.6s ease">
+                    </div>
+                </div>
+            </div>
+
+            {{-- Tombol Vote --}}
+            @if($isVotedForThis)
+                <button disabled
+                        style="background: white; color: #1D4ED8; border: 2px solid #1D4ED8;"
+                        class="mt-1 w-full py-2 rounded-xl text-sm font-bold cursor-default">
+                    ✓ Pilihanmu
+                </button>
+            @elseif($hasVotedGlobally)
+                <button disabled
+                        class="mt-1 w-full py-2 rounded-xl text-sm font-bold border-2 border-gray-300 bg-gray-100 text-gray-400 cursor-not-allowed">
+                    Sudah Vote
+                </button>
+            @else
+                @auth
+                    <button onclick="openVoteModal({{ $candidate->id }}, '{{ addslashes($candidate->name) }}')"
+                            class="mt-1 w-full py-2 rounded-xl text-sm font-bold border-2 border-[#ed8036] text-[#ed8036] hover:bg-[#ed8036] hover:text-white transition-all duration-200">
+                        🗳️ Vote
                     </button>
                 @else
-                    @auth
-                        <button onclick="openVoteModal({{ $candidate->id }}, '{{ addslashes($candidate->name) }}', '{{ addslashes($candidate->origin) }}')"
-                                class="mt-1 w-full py-2 rounded-xl text-sm font-bold border-2 border-[#ed8036]
-                                       text-[#ed8036] hover:bg-[#ed8036] hover:text-white
-                                       transition-all duration-200">
-                            🗳️ Vote
-                        </button>
-                    @else
-                        <button onclick="openLoginRequiredModal()"
-                                class="mt-1 w-full py-2 rounded-xl text-sm font-bold border-2 border-[#ed8036]
-                                       text-[#ed8036] hover:bg-[#ed8036] hover:text-white
-                                       transition-all duration-200">
-                            🗳️ Vote
-                        </button>
-                    @endauth
-                @endif
-            </div>
+                    <button onclick="openLoginRequiredModal()"
+                            class="mt-1 w-full py-2 rounded-xl text-sm font-bold border-2 border-[#ed8036] text-[#ed8036] hover:bg-[#ed8036] hover:text-white transition-all duration-200">
+                        🗳️ Vote
+                    </button>
+                @endauth
+            @endif
         </div>
-        @endforeach
     </div>
-    @endif
-
+    @endforeach
 </div>
 
 {{-- MODAL KONFIRMASI --}}
